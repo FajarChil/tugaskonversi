@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Custom Select Option</title>
+</head>
+<body>
+    <div class="input-wrap">
+    <div class="select">
+        <span>
+            What are you instrested  <!-- First Option -->
+        </span>
+        <!-- icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 18 18"><path d="M12 15.375 6 9.375 7.4 7.975 12 12.575 16.6 7.975 18 9.375Z"/></svg>
+        <ul style="display: none;">
+            <li>ini diisi</li>
+            <li>sama</li>
+            <li>bita</li>
+            <li>apa aja</li>
+            <li>yang</li>
+            <li>disi</li>
+            <li>sok</li>
+            <li>diisi</li>
+            <li>nya</li>
+            <li>oke</li>
+            <li>oke lagi</li>
+            <li>oke juga</li>
+        </ul>
+    </div>
+<script>
+    var select = document.querySelector('.select')
+    var span = document.querySelector('.select span')
+    var selectSvg = document.querySelector('.select svg')
+    var ul = document.querySelector('.select ul')
+    var li = document.querySelectorAll('.select ul li')
+
+    // give first value by default
+    select.setAttribute('value', li[0].innerText)
+
+    // now add onClick attribute to each list
+    for(var i = 0; i < li.length; i++){
+        li[i].setAttribute('onClick', 'changeValue(this)')
+    }
+
+    // show and hide of list
+    selectSvg.onclick = () => span.click()
+    span.onclick = () => {
+        if(ul.style.display === 'none'){
+            ul.style.display = 'block'
+            selectSvg.classList.add('rotate')
+        }else{
+            ul.style.display = 'none'
+            selectSvg.classList.remove('rotate')
+        }
+    }
+
+    // now create a function that change values
+    function changeValue(e){
+        span.innerText = e.innerText
+        select.setAttribute('value', e.innerText)
+        ul.style.display = 'none'
+        selectSvg.classList.remove('rotate')
+    }
+</script>
+</div>
+</body>
+</html>
